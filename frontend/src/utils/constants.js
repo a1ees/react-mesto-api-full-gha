@@ -10,12 +10,12 @@ export const cardsItems = '#cards__item';
 export const cardsContainer = '.cards';
 
 export const apiConfig = {
-  baseUrl: 'https://api.alees.nomoredomainsrocks.ru/',
+  baseUrl: 'https://api.alees.nomoredomainsrocks.ru',
   headers: {
     'Content-Type': 'application/json'
   }
 }
 
 export const authConfig = {
-  baseUrl: 'https://api.alees.nomoredomainsrocks.ru/'
+  baseUrl: 'https://api.alees.nomoredomainsrocks.ru'
 }

@@ -14,7 +14,7 @@ const regexLink = /^https?:\/\/[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(\/[a-zA-Z0-9._~:/?#[
 
 const app = express();
 
-app.use(cors({ origin: ['https://alees.nomoredomainsrocks.ru'], credentials: true }));
+app.use(cors({ origin: ['https://alees.nomoredomainsrocks.ru', 'http://localhost:3000', 'http://localhost:3001'], credentials: true }));
 
 const { PORT = 3000 } = process.env;
 
