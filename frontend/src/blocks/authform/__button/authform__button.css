@@ -1,0 +1,9 @@
+.authform__button {
+  min-width: 350px;
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  margin-top: 216px;
+  padding: 14px 84px;
+}

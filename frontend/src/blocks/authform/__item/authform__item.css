@@ -1,0 +1,7 @@
+.authform__item {
+  cursor: text;
+}
+
+.authform__item:first-child {
+  margin-bottom: 30px;
+ }

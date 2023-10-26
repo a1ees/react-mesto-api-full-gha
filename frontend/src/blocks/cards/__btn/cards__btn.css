@@ -1,0 +1,17 @@
+.cards__btn {
+  width: 22px;
+  height: 19px;
+  margin: 0;
+  transition: opacity 0.6s;
+  background: none;
+  border: none;
+  padding-bottom: 20px;
+  background-image: url(../../../images/logo/element-logo.svg);
+  background-repeat: no-repeat;
+  cursor: pointer;
+  
+}
+
+.cards__btn:hover {
+  opacity: 0.5;
+}

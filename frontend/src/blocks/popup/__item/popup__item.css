@@ -1,0 +1,14 @@
+.popup__item {
+  max-width: 358px;
+  height: 27px;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+  margin: 0px 0px 42px 36px;
+  cursor: text;
+}
+
+@media screen and (max-width: 530px) {
+  .popup__item {
+    margin: 0px 0px 42px 22px;
+    max-width: 238px;
+  }
+}

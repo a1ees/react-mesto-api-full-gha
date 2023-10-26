@@ -1,0 +1,10 @@
+.authform__skip-button {
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 15px 0px 0px 0px;
+  color: #FFFFFF;
+  line-height: 17px;
+  font-size: 14px;
+  font-weight: 400;
+}
