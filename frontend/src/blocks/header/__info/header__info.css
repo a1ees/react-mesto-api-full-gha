@@ -1,4 +1,12 @@
-.header__info{
+.header__info {
   display: flex;
   align-items: center;
+}
+
+@media screen and (max-width: 400px) {
+  .header__info {
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+  }
 }

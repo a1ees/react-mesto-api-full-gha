@@ -9,7 +9,7 @@
   align-items: flex-start;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 400px) {
   .header {
     padding-top: 28px;
     min-height: 56px;
