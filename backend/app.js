@@ -44,7 +44,7 @@ app.post('/signup', celebrate({
     name: Joi.string().min(2).max(30),
     about: Joi.string().min(2).max(30),
     email: Joi.string().required().email(),
-    password: Joi.string().required().min(8),
+    password: Joi.string().required(),
     avatar: Joi.string().regex(regexLink),
   }),
 }), createUser);
@@ -59,12 +59,11 @@ const cardRoutes = require('./routes/cards');
 
 app.use('/users', auth, userRoutes);
 app.use('/cards', auth, cardRoutes);
-app.use(errorLogger);
-
 // роут для несуществующих страниц
 app.use((req, res, next) => {
   next(new NotFoundError('Страница не существует'));
 });
+app.use(errorLogger);
 
 app.use(errors());
 
