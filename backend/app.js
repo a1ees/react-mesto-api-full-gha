@@ -49,6 +49,8 @@ app.post('/signup', celebrate({
   }),
 }), createUser);
 
+app.use(auth);
+
 app.get('/clear-cookie', (req, res) => {
   res.clearCookie('jwt');
   res.send('Куки удалены.');
@@ -57,9 +59,8 @@ app.get('/clear-cookie', (req, res) => {
 const userRoutes = require('./routes/users');
 const cardRoutes = require('./routes/cards');
 
-app.use('/users', auth, userRoutes);
-app.use('/cards', auth, cardRoutes);
-// роут для несуществующих страниц
+app.use('/users', userRoutes);
+app.use('/cards', cardRoutes);
 app.use((req, res, next) => {
   next(new NotFoundError('Страница не существует'));
 });

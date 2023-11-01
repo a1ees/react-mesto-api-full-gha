@@ -94,7 +94,11 @@ module.exports.updateUserMe = async (req, res, next) => {
     const user = await User.findByIdAndUpdate(id, updateUser, { new: true, runValidators: true });
     res.send(user);
   } catch (error) {
-    next(error);
+    if (error.name === 'ValidationError') {
+      next(new ValidationError('Переданы невалидные данные'));
+    } else {
+      next(error);
+    }
   }
 };
 
