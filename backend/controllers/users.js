@@ -21,9 +21,9 @@ module.exports.login = async (req, res, next) => {
     if (!checkPassword) {
       throw new UnathorizedError('Неправильные почта или пароль');
     }
-    const cookieDomain = process.env.NODE_ENV === 'production' ? '.nomoredomains.rocks' : 'localhost:3000';
+
     const token = await jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', { expiresIn: '7d' });
-    res.cookie('jwt', token, { maxAge: 3600000 * 7, httpOnly: true, domain: cookieDomain });
+    res.cookie('jwt', token, { maxAge: 3600000 * 7, httpOnly: true});
     res.send({ _id: user._id });
   } catch (error) {
     next(error);
