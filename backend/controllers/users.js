@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 require('dotenv').config();
 
-const { NODE_ENV, JWT_SECRET } = process.env;
+const {NODE_ENV, JWT_SECRET} = process.env;
 
 const ValidationError = require('../errors/validation-err'); // 400
 const UnathorizedError = require('../errors/unathorized-err'); // 401
@@ -12,8 +12,8 @@ const ConflictError = require('../errors/conflict-error'); // 409
 
 module.exports.login = async (req, res, next) => {
   try {
-    const { email, password } = req.body;
-    const user = await User.findOne({ email }).select('+password');
+    const {email, password} = req.body;
+    const user = await User.findOne({email}).select('+password');
     if (!user) {
       throw new UnathorizedError('Неправильные почта или пароль');
     }
@@ -22,9 +22,9 @@ module.exports.login = async (req, res, next) => {
       throw new UnathorizedError('Неправильные почта или пароль');
     }
 
-    const token = await jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', { expiresIn: '7d' });
-    res.cookie('jwt', token, { maxAge: 3600000 * 7, sameSite: 'None', secure: true });
-    res.send({ _id: user._id });
+    const token = await jwt.sign({_id: user._id}, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', {expiresIn: '7d'});
+    res.cookie('jwt', token, {maxAge: 3600000 * 7, sameSite: 'None', secure: true});
+    res.send({_id: user._id});
   } catch (error) {
     next(error);
   }
@@ -33,7 +33,7 @@ module.exports.login = async (req, res, next) => {
 module.exports.getUsers = async (req, res, next) => {
   try {
     const users = await User.find({});
-    res.send({ data: users });
+    res.send({data: users});
   } catch (error) {
     next(error);
   }
@@ -77,7 +77,7 @@ module.exports.getUserById = async (req, res, next) => {
     if (!user) {
       throw new NotFoundError('Пользователь по указанному _id не найден');
     }
-    res.send({ data: user });
+    res.send({data: user});
   } catch (error) {
     if (error.name === 'CastError') {
       next(new ValidationError('id пользователя указан некорректно'));
@@ -89,10 +89,11 @@ module.exports.getUserById = async (req, res, next) => {
 
 module.exports.updateUserMe = async (req, res, next) => {
   try {
-    const { name, about } = req.body;
-    const updateUser = { name, about };
+    const {name, about} = req.body;
+    const updateUser = {name, about};
     const id = req.user._id;
-    const user = await User.findByIdAndUpdate(id, updateUser, { new: true, runValidators: true });
+    console.log(id)
+    const user = await User.findByIdAndUpdate(id, updateUser, {new: true, runValidators: true});
     res.send(user);
   } catch (error) {
     if (error.name === 'ValidationError') {
@@ -105,9 +106,10 @@ module.exports.updateUserMe = async (req, res, next) => {
 
 module.exports.updateAvatar = async (req, res, next) => {
   try {
-    const { avatar } = req.body;
+    const {avatar} = req.body;
     const id = req.user._id;
-    const updateUser = await User.findByIdAndUpdate(id, avatar, { new: true, runValidators: true });
+    console.log(avatar)
+    const updateUser = await User.findByIdAndUpdate(id, {$set: {avatar: avatar}}, {new: true, runValidators: true});
     res.send(updateUser);
   } catch (error) {
     if (error.name === 'ValidationError') {

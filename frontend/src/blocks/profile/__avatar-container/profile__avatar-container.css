@@ -5,7 +5,7 @@
   position: relative;
 }
 
-.profile__avatar-container:hover .profile__avatar{
+.profile__avatar-container:hover .profile__avatar {
   cursor: pointer;
   opacity: 0.3;
 }
